@@ -11,7 +11,7 @@ type Config struct {
 	Collection string
 }
 
-func load() *Config {
+func Load() *Config {
 	return &Config{
 		Port: os.Getenv("PORT"),
 		MongoDBURI: os.Getenv("MONGODB_URI"),
@@ -20,7 +20,7 @@ func load() *Config {
 	}
 }
 
-func getEnv(key, defaultValue string) string {
+func GetEnv(key, defaultValue string) string {
 	if value, exists := os.LookupEnv(key); exists {
 		return value
 	}
