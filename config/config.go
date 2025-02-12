@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 )
 
@@ -12,12 +13,15 @@ type Config struct {
 }
 
 func Load() *Config {
-	return &Config{
-		Port: os.Getenv("PORT"),
-		MongoDBURI: os.Getenv("MONGODB_URI"),
-		DBName: os.Getenv("DB_NAME"),
-		Collection: os.Getenv("COLLECTION"),
-	}
+    cfg := &Config{
+        Port:       GetEnv("PORT", "3000"),
+        MongoDBURI: GetEnv("MONGODB_URI", ""),
+        DBName:     GetEnv("DB_NAME", "dictionary"),
+        Collection: GetEnv("COLLECTION", "words"),
+    }
+    
+    fmt.Printf("Loaded config: %+v\n", cfg)
+    return cfg
 }
 
 func GetEnv(key, defaultValue string) string {

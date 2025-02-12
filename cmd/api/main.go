@@ -20,7 +20,5 @@ func main() {
 	http.HandleFunc("/api/word", handlers.GetWord)
 
 	log.Printf("Starting server on port %s", cfg.Port)
-	if err := http.ListenAndServe(":"+cfg.Port, nil); err != nil {
-		log.Fatalf("Failed to start server: %v", err)
-	}
+	log.Fatal(http.ListenAndServe(":"+cfg.Port, nil))
 }
